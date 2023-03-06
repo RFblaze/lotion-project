@@ -15,20 +15,29 @@ function App() {
     <div id="notes-section">
       <div id="header">
         <h2>Notes</h2>
-        
         <button onClick={ () => {
           
           const newNote = document.createElement("div")
-          // newNote.addEventListener("click")
+          newNote.addEventListener("click", () => window.alert("Clicked"))
           const noteTitle = document.createElement("h3")
+          const noteDate = document.createElement("h5")
+          const noteSummary = document.createElement("h4")
+          noteSummary.append("...")
+          const notes = document.getElementById("note-list")
+          if (num === 0){
+            notes.children[0].remove()
+          }
           noteTitle.append(`New Note ${num}`)
           setNum(num + 1)
           newNote.append(noteTitle)
-          const notes = document.getElementById("note-list")
+          newNote.append(noteDate)
+          newNote.append(noteSummary)
           notes.appendChild(newNote)
+          
         } }>+</button>
       </div>
       <div id="note-list">
+        <h2>No Note Yet</h2>
       </div>
     </div>
     <div id="writing-section">
