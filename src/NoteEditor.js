@@ -1,41 +1,43 @@
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useRef } from 'react';
+import { ShowEditor } from './NoteList';
 
-var editor = false
 
-export function ShowEditor(firstNote){
-    if (firstNote){
-        editor = true
-    }
-    return editor
-    
-}
+const LocalStorageKey = "lotion.notes"
 
-function NoteEditor({num, notes}){
+
+function NoteEditor({notes}){
     const [value, setValue] = useState('');
     const setTitle = useRef()
     const setDate = useRef()
     const setContent = useRef()
 
-    // const [msg, dispatch] = useReducer;
-    if (ShowEditor()){
-        return (
+    const SaveEditorContents = () =>{
+        const NoteContents = {
+            title: setTitle.current,
+            date: setDate.current,
+
+
+        }
+        localStorage.setItem(LocalStorageKey, JSON.stringify())
+    }
+
+    const DeleteNote = () =>{
+        
+    }
+    return (
         <> 
-            <input ref={setTitle} type="text" defaultValue="New Note" autoFocus/>
-            <input ref={setDate} type="datetime-local" />
-            <button>Save</button>
-            <button>Delete</button>
-            <ReactQuill ref={setContent} theme="snow" value={value} onChange={setValue}/>
+            <div className='hidden'>
+                <input ref={setTitle} type="text" defaultValue="New Note" autoFocus/>
+                <input ref={setDate} type="datetime-local" />
+                <button onClick={SaveEditorContents}>Save</button>
+                <button onClick={DeleteNote}>Delete</button>
+                <ReactQuill ref={setContent} theme="snow" value={value} onChange={setValue}/>
+            </div>
         </>
-        );
-    }
-    else{
-        return(
-        <h1>Create a new note or select one</h1>
-        )
-    }
+    )
 }
 
 export default NoteEditor

@@ -30,7 +30,6 @@ function App() {
     if(num === 0){
       const noNoteYet = document.getElementById("note-list").children[0]
       noNoteYet.remove()
-      ShowEditor(true)
     }
 
     const newNote = {
@@ -62,7 +61,8 @@ function App() {
       </div>
     </div>
     <div id="writing-section" ref={writing_section}>
-      <NoteEditor/>
+      <h1>Create a new note or select one</h1>
+      <NoteEditor notes={notes}/>
     </div>
   </div>
   

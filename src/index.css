@@ -125,6 +125,10 @@ input[type=text] {
   border: none;
 }
 
+.hidden {
+  display: none;
+}
+
 #writing-section h1 {
   color: lightslategray;
 }
