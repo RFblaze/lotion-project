@@ -117,10 +117,12 @@ h5.title {
   color: #FFFFFF;
 }
 
-
-
 #writing-section {
   width: 80%;
+}
+
+input[type=text] {
+  border: none;
 }
 
 #writing-section h1 {
