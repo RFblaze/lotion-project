@@ -29,27 +29,37 @@ function NoteEditor({notes}){
     const setContent = useRef()
 
     const SaveEditorContents = () =>{
-        const NoteContents = {
-            title: setTitle.current,
-            date: setDate.current,
-            
-
+        // Must look for corresponding note id in notes array and replace it with new values
+        for (const note of notes){
+            if (note.id === selectedNoteID){
+                note.title = setTitle.current
+                note.date = setDate.current
+                note.formattedText = setContent.current
+            }
         }
-        localStorage.setItem(LocalStorageKey, JSON.stringify())
+        localStorage.setItem(LocalStorageKey, JSON.stringify([...notes]))
     }
 
     function DeleteNote(){
-    
+        let index = 0
+        for (const note of notes){
+            index += 1
+            if (note.id === selectedNoteID){
+                break
+            }
+        }
+        notes.splice(index, 1)
+        localStorage.setItem(LocalStorageKey, JSON.stringify([...notes]))
     }
     
     return (
         <> 
             <div className='hidden'>
                 <input id="note-date" ref={setTitle} type="text" defaultValue="New Note" autoFocus/>
-                <input ref={setDate} type="datetime-local" value="2002-10-26T17:45"/>
+                <input ref={setDate} type="datetime-local" defaultValue="2002-10-26T17:45"/>
                 <button onClick={SaveEditorContents}>Save</button>
                 <button onClick={DeleteNote}>Delete</button>
-                <ReactQuill ref={setContent} theme="snow" value={value} onChange={setValue}/>
+                <ReactQuill ref={setContent} theme="snow" defaultValue={value} onChange={setValue}/>
             </div>
         </>
     )

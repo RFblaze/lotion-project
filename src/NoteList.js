@@ -7,7 +7,7 @@ function NoteList({notes}){
     const noteContent = useRef()
     const completeNote = useRef()
     const notesArray = notes
-
+    
     return(
         <>
         {notes.map((note) => (

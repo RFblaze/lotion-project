@@ -9,6 +9,7 @@ function App() {
   const [notes, setNotes] = useState([])
   const note_section = useRef()
   const writing_section = useRef()
+  const LocalStorageKey = "lotion.notes"
 
   const HideNoteList = () =>{
     if (note_section.current.style.display != "none"){
@@ -22,6 +23,17 @@ function App() {
     
   }
 
+  useEffect(() => {
+    const storedNotes = JSON.parse(localStorage.getItem(LocalStorageKey))
+    if (storedNotes){
+      setNotes(storedNotes)
+      setNum(num + 1)
+    }
+  }, [])
+
+  // useEffect(() => {
+  //   localStorage.setItem(LocalStorageKey, JSON.stringify(notes))
+  // }, notes)
 
   const AddNote = () =>{
     console.log("hej")
@@ -34,8 +46,8 @@ function App() {
     const newNote = {
       id: uuidv4(),
       title: `New Note ${num}`,
+      date: "",
       formattedText: "",
-      date: ""
     }
     setNotes([newNote, ...notes])
     setNum(num + 1)
@@ -47,8 +59,8 @@ function App() {
   <>
   <div id="top">
     <div><button id="menu" onClick={HideNoteList}>&#9776;</button></div>
-    <div><h1 class ="title">Lotion</h1></div>
-    <div><h5 class = "title">Like Notion but worse</h5></div>
+    <div><h1 className ="title">Lotion</h1></div>
+    <div><h5 className = "title">Like Notion but worse</h5></div>
   </div>
   <div id="container">
     <div id="notes-section" ref={note_section}>
