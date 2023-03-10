@@ -129,6 +129,10 @@ input[type=text] {
   display: none;
 }
 
+#note-date {
+  margin-left: 15px;
+}
+
 #writing-section h1 {
   color: lightslategray;
 }

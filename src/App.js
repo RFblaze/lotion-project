@@ -1,7 +1,6 @@
 import React, {useState, useRef, useEffect} from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import NoteEditor from "./NoteEditor";
-import { ShowEditor } from "./NoteEditor";
 import NoteList from "./NoteList";
 import { v4 as uuidv4} from "uuid";
 
@@ -41,6 +40,8 @@ function App() {
     setNotes([newNote, ...notes])
     setNum(num + 1)
   }
+
+  
 
   return (
   <>
